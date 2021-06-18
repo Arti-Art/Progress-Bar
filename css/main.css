@@ -93,6 +93,7 @@ body {
 
 .toc-selected {
   font-weight: 500;
+  color: red;
 }
 
 .progress {
@@ -116,5 +117,11 @@ body {
 
 .progress-d {
   background-color: #ffa5d6;
+}
+
+@media (max-width: 799px) {
+  body {
+    background-color: #659bff;
+  }
 }
 /*# sourceMappingURL=main.css.map */
