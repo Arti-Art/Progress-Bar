@@ -1,10 +1,13 @@
+gsap.registerPlugin(ScrollTrigger);
+let progbar = document.querySelector(".progbar");
+
 ScrollTrigger.matchMedia({
   "(min-width: 800px)": function () {
     
     let toc = gsap.timeline({
       scrollTrigger: {
         trigger: '.table-of-contents',
-        start: 'top 10%', // start when center of our trigger element reaches %fromTop of viewport
+        start: 'top 10%', // start when top of our trigger element reaches %fromTop of viewport
         // markers: true,
         endTrigger: '.grid-right',
         end: "bottom 50%",
@@ -19,11 +22,19 @@ ScrollTrigger.matchMedia({
         markers: true,
         endTrigger: '.section-a',
         end: "bottom 30%",
+        onEnter: () => {console.log("onEnter triggered")},
+        onLeave: () => {console.log("onLeave triggered")},
+        onEnterBack: () => {console.log("onEnterBack triggered")},
+        onLeaveBack: () => {console.log("onLeaveBack triggered")},
+        // onUpdate: (self) => { console.log("onUpdate", self.progress.toFixed(3))},
+        onUpdate: (self) => {
+          progbar.value = self.progress.toFixed(3) * 100;
+        },
         toggleClass: "toc-selected",
         scrub: 0.5
       }
     });
-    progressA.from('.progress-a', { x: -200 });
+    progressA.from('.progress-a', { xPercent: -100 });
     
     let progressB = gsap.timeline({
       scrollTrigger: {
@@ -36,7 +47,7 @@ ScrollTrigger.matchMedia({
       }
     });
     
-    progressB.from('.progress-b', { x: -320 });
+    progressB.from('.progress-b', { xPercent: -100 });
     
     let progressC = gsap.timeline({
       scrollTrigger: {
@@ -49,7 +60,7 @@ ScrollTrigger.matchMedia({
       }
     });
     
-    progressC.from('.progress-c', { x: -320 });
+    progressC.from('.progress-c', { xPercent: -100 });
     
     let progressD = gsap.timeline({
       scrollTrigger: {
@@ -62,7 +73,7 @@ ScrollTrigger.matchMedia({
       }
     });
     
-    progressD.from('.progress-d', { x: -320 });
+    progressD.from('.progress-d', { xPercent: -100 });
 
   }
 })

@@ -103,6 +103,12 @@ body {
   position: relative;
 }
 
+.progbar {
+  width: 100%;
+  height: 50px;
+  background-color: green;
+}
+
 .progress-a {
   background-color: #b7ffa5;
 }
