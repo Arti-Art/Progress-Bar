@@ -1,3 +1,14 @@
+:root {
+  --progress-a-color: rgb(183, 255, 165);
+  --progress-b-color: rgb(255, 216, 165);
+  --progress-c-color: rgb(165, 228, 255);
+  --progress-d-color: rgb(255, 165, 214);
+  --progbars-border-color: rgb(46, 172, 255);
+
+  --progbar-height: 50px;
+}
+
+// General
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,11 +21,27 @@ body {
   height: 100vh;
 }
 
+// Utilities
+.t-large {
+  font-size: 2em;
+}
+.p-5 {
+  padding: 3em;
+}
+.d-block {
+  display: block;
+}
+.d-none {
+  display: none;
+}
+
+// LAYOUT
 .section {
   // background-color: rgb(255, 253, 220);
   margin-bottom: 2em;
 }
 
+  // First screen to scroll past
 .section-empty {
   height: 100vh;
   display: flex;
@@ -22,9 +49,9 @@ body {
   align-items: center;
 }
 
+// Grid: TOC | Text
 .grid {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
+  position: relative;
 }
 
 .grid-left {
@@ -36,14 +63,11 @@ body {
   list-style: none;
   border: 1px solid rgb(0, 0, 0);
   border-radius: 12px;
-  width: 320px;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
   li {
     background-color: rgb(255, 255, 255);
     width: 100%;
-    height: 50px;
+    height: var(--progbar-height);
     position: relative;
     &:after {
       content: "";
@@ -69,25 +93,19 @@ body {
   // background-color: rgb(231, 231, 231);
 }
 
-.t-large {
-  font-size: 2em;
-}
-
 .section-title {
   font-size: 3em;
   text-transform: uppercase;
   margin-bottom: 0.6em;
 }
 
-.p-5 {
-  padding: 3em;
-}
-
+// toggle class with scrolltrigger
 .toc-selected {
   font-weight: 500;
   color: red;
 }
 
+// progress bar
 .progress {
   width: 100%;
   height: 100%;
@@ -95,30 +113,42 @@ body {
   position: relative;
 }
 
-.progbar {
-  width: 100%;
-  height: 50px;
-  background-color: green;
-}
-
+// Assign colors to individual progress bars
 .progress-a {
-  background-color: rgb(183, 255, 165);
+  background-color: var(--progress-a-color);
 }
-
 .progress-b {
-  background-color: rgb(255, 216, 165);
+  background-color: var(--progress-b-color);
 }
-
 .progress-c {
-  background-color: rgb(165, 228, 255);
+  background-color: var(--progress-c-color);
 }
-
 .progress-d {
-  background-color: rgb(255, 165, 214);
+  background-color: var(--progress-d-color);
 }
 
-@media (max-width: 799px) {
+// SMALL <1000px
+@media (max-width: 999px) {
   body {
     background-color: rgb(101, 155, 255);
+  }
+  .grid-left {
+    height: var(--progbar-height); // make container 1 progressbar high since only one progressbar at a time
+  }
+  .table-of-contents {
+    height: var(--progbar-height);
+  }
+}
+
+// LARGE >=1000px
+@media (min-width: 1000px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+  .table-of-contents {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
   }
 }
